@@ -1,0 +1,40 @@
+/* --- ANIMATIONS.CSS --- */
+
+.enlace-menu {
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.enlace-menu:hover {
+    color: var(--color-highlight);
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+    transform: translateY(-3px);
+}
+
+.logo a {
+    transition: transform 0.3s ease;
+    display: inline-block;
+}
+
+.logo a:hover {
+    transform: scale(1.05) rotate(-2deg);
+}
+
+/* Animación Tarjeta Producto */
+.card-producto {
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.card-producto:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(127, 22, 247, 0.3);
+    border-color: var(--color-secondary);
+}
+
+/* Botón agregar */
+.btn-agregar {
+    transition: filter 0.3s;
+}
+
+.btn-agregar:hover {
+    filter: brightness(1.2);
+}
