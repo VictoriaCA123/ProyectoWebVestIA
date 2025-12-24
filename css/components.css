@@ -139,3 +139,122 @@
     opacity: 1;
     transform: translateY(0);
 }
+
+/* --- TARJETA DE PRODUCTO (Custom) --- */
+
+/* 1. El contenedor principal de la tarjeta */
+.product-card-custom {
+    height: 100%;              /* Ocupa toda la altura de la columna */
+    display: flex;             /* Activa Flexbox */
+    flex-direction: column;    /* Ordena elementos verticalmente */
+    background-color: #fff;
+    border: 1px solid rgba(0,0,0,0.05); /* Borde sutil opcional */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.product-card-custom:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 .5rem 1rem rgba(0,0,0,.15)!important;
+}
+
+/* 2. El área de la imagen */
+.product-img-wrapper {
+    height: 250px;             /* Altura fija controlada por CSS */
+    position: relative;        /* Para posicionar los badges encima */
+    overflow: hidden;
+    flex-shrink: 0;            /* IMPORTANTE: Evita que la imagen se aplaste si falta espacio */
+}
+
+.product-img-fit {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;         /* La imagen se adapta sin deformarse */
+    transition: transform 0.5s ease;
+}
+
+.product-card-custom:hover .product-img-fit {
+    transform: scale(1.05);    /* Zoom suave al pasar el mouse */
+}
+
+/* 3. El cuerpo de información */
+.product-info-body {
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;    /* Elementos uno debajo del otro */
+    flex-grow: 1;              /* IMPORTANTE: Ocupa todo el espacio sobrante */
+    justify-content: space-between; /* Empuja el footer hacia abajo */
+}
+
+/* 4. Descripción del texto */
+.product-desc-text {
+    font-size: 0.9rem;
+    color: #6c757d;
+    margin-bottom: 1rem;
+    /* Sin límites de altura para leer todo el texto */
+}
+
+/* 5. Pie de tarjeta (Precio y Botón) */
+.product-card-footer {
+    margin-top: auto;          /* Esto empuja el precio/botón al fondo automáticamente */
+    padding-top: 1rem;
+    border-top: 1px solid #f0f0f0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* 6. Badges (Etiquetas) */
+.product-badges-container {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    margin: 0.5rem;
+    display: flex;
+    gap: 0.25rem;
+    flex-wrap: wrap;
+}
+
+/* 1. Estilos de los colores (estaban en el head) */
+.color-option {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    cursor: pointer;
+    border: 2px solid rgba(255,255,255,0.2);
+    transition: transform 0.2s;
+}
+
+.color-option:hover, .color-option.active {
+    transform: scale(1.2);
+    border-color: var(--color-gold);
+}
+
+/* 2. Checkbox personalizado (estaba en el head) */
+.form-check-input:checked {
+    background-color: var(--color-gold);
+    border-color: var(--color-gold);
+}
+
+/* 3. Tarjeta Sidebar (estaba inline style="top:20px...") */
+.sidebar-sticky-card {
+    top: 20px;
+    z-index: 900;
+    background-color: var(--color-primary);
+    color: white;
+    border-radius: 12px;
+}
+
+/* 4. Select de Categoría (estaba inline style="background-color...") */
+.filter-select-custom {
+    background-color: rgba(255,255,255,0.9);
+}
+
+/* 5. Botones de Talla (estaba inline style="width:35px...") */
+.btn-talla-fixed {
+    width: 35px; 
+    height: 35px;
+    display: flex;       /* Para centrar el texto perfectamente */
+    align-items: center;
+    justify-content: center;
+    padding: 0;          /* Quitar padding extra */
+}

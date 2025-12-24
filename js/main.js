@@ -1,4 +1,4 @@
-// js/main.js
+
 
 document.addEventListener('DOMContentLoaded', () => {
     cargarProductos(productos); // Llamamos a la función al cargar la página
@@ -7,18 +7,18 @@ document.addEventListener('DOMContentLoaded', () => {
 function cargarProductos(listaProductos) {
     const contenedor = document.getElementById('contenedor-productos');
     
-    // 1. Limpiamos el mensaje de "Cargando catálogo..."
+    
     contenedor.innerHTML = '';
 
-    // 2. Recorremos la lista de productos y creamos el HTML para cada uno
+    
     listaProductos.forEach(producto => {
         
-        // Verificamos si es nuevo para ponerle la etiqueta
+        
         const etiquetaNuevo = producto.nuevo 
             ? '<span class="badge-new">Nuevo</span>' 
             : '';
 
-        // Creamos el HTML de la tarjeta
+        // Crea el HTML de la tarjeta
         const tarjetaHTML = `
             <div class="col">
                 <div class="product-card-clean">
@@ -38,13 +38,13 @@ function cargarProductos(listaProductos) {
             </div>
         `;
 
-        // 3. Insertamos la tarjeta en el contenedor
+        
         contenedor.innerHTML += tarjetaHTML;
     });
 }
 
-// Función temporal para probar (luego irá en cart.js)
+
 function agregarAlCarrito(id) {
     alert(`¡Producto ${id} añadido al carrito!`);
-    // Aquí luego conectaremos con la lógica real del carrito
+    
 }
