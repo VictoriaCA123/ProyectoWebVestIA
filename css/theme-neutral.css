@@ -1,8 +1,8 @@
-/* --- THEME-NEUTRAL.CSS --- */
+/* Definición de Variables Globales (:root)  */
 :root {
     /* PALETA DE COLORES */
     
-    /* ESTE ES EL COLOR DEL FOOTER Y LOGO (Azul Medianoche) */
+    /* ESTE ES EL COLOR DEL FOOTER Y LOGO */
     --color-primary: #1B365D; 
     
     /* Detalles Dorados */

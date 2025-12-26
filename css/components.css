@@ -1,23 +1,25 @@
-/* --- COMPONENTS.CSS --- */
+/* Componentes visuales y módulos de la UI   */
 
 /* LOGO */
 .brand-logo {
     font-size: 2.2rem;
-    font-weight: 800; /* Letra gruesa */
-    color: var(--color-primary); /* Azul Medianoche */
+    font-weight: 800;
+    color: var(--color-primary);
     text-decoration: none;
     letter-spacing: -0.5px;
-    font-family: 'Playfair Display', serif; /* Si pudieras agregar esta fuente sería genial, sino usará la defecto */
+    font-family: 'Playfair Display', serif;
 }
 .text-gold { color: var(--color-gold); }
 
 /* BUSCADOR */
+/* Necesario para posicionar el botón de la lupa dentro */
 .search-container {
     position: relative;
     max-width: 600px;
     margin: 0 auto;
 }
 
+/* Bordes totalmente redondos del buscador */
 .search-input {
     border-radius: 50px;
     padding: 12px 25px;
@@ -26,10 +28,13 @@
     transition: all 0.3s;
 }
 
+/* Posicionamiento absoluto para meter la lupa DENTRO del input del buscador  */
 .search-input:focus {
     border-color: var(--color-primary);
-    box-shadow: 0 0 0 3px rgba(27, 54, 93, 0.1); /* Sombra azul suave */
+    box-shadow: 0 0 0 3px rgba(27, 54, 93, 0.1);
 }
+
+
 
 .btn-search {
     position: absolute;
@@ -41,7 +46,7 @@
     color: var(--color-primary);
 }
 
-/* ICONOS HEADER */
+/* ICONOS HEADER (Carrito, Usuario) */
 .icon-link {
     text-decoration: none;
     color: var(--color-text);
@@ -56,7 +61,7 @@
 .icon-link i {
     font-size: 1.3rem;
     margin-bottom: 4px;
-    color: var(--color-primary); /* Iconos Azules */
+    color: var(--color-primary);
 }
 
 .icon-link:hover i { color: var(--color-gold); }
@@ -67,7 +72,7 @@
     color: white;
 }
 
-/* BOTONES TIENDA */
+/* BOTONES ESTILO TIENDA */
 .btn-shop {
     background: white;
     color: var(--color-primary);
@@ -113,6 +118,8 @@
     letter-spacing: 1px;
 }
 
+
+/* Botón flotante "Añadir rápido" sobre la imagen */
 .btn-add-cart {
     position: absolute;
     bottom: 10px;
@@ -125,77 +132,77 @@
     box-shadow: 0 2px 10px rgba(0,0,0,0.1);
     cursor: pointer;
     transition: all 0.3s;
-    opacity: 0; /* Invisible por defecto */
+    opacity: 0;
     transform: translateY(10px);
 }
 
 .btn-add-cart:hover {
-    background-color: var(--color-gold); /* O el color dorado que definiste */
+    background-color: var(--color-gold);
     color: white;
 }
 
-/* Mostrar botón al pasar el mouse por la imagen */
+
+/* Muestra el botón cuando pasas el mouse por la imagen */
 .img-wrapper:hover .btn-add-cart {
     opacity: 1;
     transform: translateY(0);
 }
 
-/* --- TARJETA DE PRODUCTO (Custom) --- */
-
-/* 1. El contenedor principal de la tarjeta */
+/* Asegura que todas las tarjetas midan lo mismo las tarjetas del catalogo de productos */
 .product-card-custom {
-    height: 100%;              /* Ocupa toda la altura de la columna */
-    display: flex;             /* Activa Flexbox */
-    flex-direction: column;    /* Ordena elementos verticalmente */
+    height: 100%;
+    display: flex;
+    flex-direction: column;
     background-color: #fff;
-    border: 1px solid rgba(0,0,0,0.05); /* Borde sutil opcional */
+    border: 1px solid rgba(0,0,0,0.05);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .product-card-custom:hover {
+    /* Efecto de levitación */
     transform: translateY(-5px);
     box-shadow: 0 .5rem 1rem rgba(0,0,0,.15)!important;
 }
 
-/* 2. El área de la imagen */
+/* Contenedor de la Imagen del catalogo de productos*/
 .product-img-wrapper {
-    height: 250px;             /* Altura fija controlada por CSS */
-    position: relative;        /* Para posicionar los badges encima */
+    height: 250px;
+    position: relative;
     overflow: hidden;
-    flex-shrink: 0;            /* IMPORTANTE: Evita que la imagen se aplaste si falta espacio */
+    flex-shrink: 0;
 }
 
+
+/* Recorta la imagen para llenar el espacio sin deformarse */
 .product-img-fit {
     width: 100%;
     height: 100%;
-    object-fit: cover;         /* La imagen se adapta sin deformarse */
+    object-fit: cover;
     transition: transform 0.5s ease;
 }
 
+/* Efecto Zoom en la imagen al pasar el mouse sobre la tarjeta */
 .product-card-custom:hover .product-img-fit {
-    transform: scale(1.05);    /* Zoom suave al pasar el mouse */
+    transform: scale(1.05);
 }
 
-/* 3. El cuerpo de información */
+/* Cuerpo de la Tarjeta */
 .product-info-body {
     padding: 1rem;
     display: flex;
-    flex-direction: column;    /* Elementos uno debajo del otro */
-    flex-grow: 1;              /* IMPORTANTE: Ocupa todo el espacio sobrante */
-    justify-content: space-between; /* Empuja el footer hacia abajo */
+    flex-direction: column;
+    flex-grow: 1;
+    justify-content: space-between;
 }
 
-/* 4. Descripción del texto */
 .product-desc-text {
     font-size: 0.9rem;
     color: #6c757d;
     margin-bottom: 1rem;
-    /* Sin límites de altura para leer todo el texto */
 }
 
-/* 5. Pie de tarjeta (Precio y Botón) */
 .product-card-footer {
-    margin-top: auto;          /* Esto empuja el precio/botón al fondo automáticamente */
+    margin-top: auto;
     padding-top: 1rem;
     border-top: 1px solid #f0f0f0;
     display: flex;
@@ -203,7 +210,6 @@
     align-items: center;
 }
 
-/* 6. Badges (Etiquetas) */
 .product-badges-container {
     position: absolute;
     bottom: 0;
@@ -214,7 +220,7 @@
     flex-wrap: wrap;
 }
 
-/* 1. Estilos de los colores (estaban en el head) */
+/* Opciones de Color (Circulos) */
 .color-option {
     width: 30px;
     height: 30px;
@@ -229,13 +235,12 @@
     border-color: var(--color-gold);
 }
 
-/* 2. Checkbox personalizado (estaba en el head) */
 .form-check-input:checked {
     background-color: var(--color-gold);
     border-color: var(--color-gold);
 }
 
-/* 3. Tarjeta Sidebar (estaba inline style="top:20px...") */
+/* Barra de opciones filtro de busqueda para que se quede pegada*/
 .sidebar-sticky-card {
     top: 20px;
     z-index: 900;
@@ -244,17 +249,56 @@
     border-radius: 12px;
 }
 
-/* 4. Select de Categoría (estaba inline style="background-color...") */
 .filter-select-custom {
     background-color: rgba(255,255,255,0.9);
 }
 
-/* 5. Botones de Talla (estaba inline style="width:35px...") */
 .btn-talla-fixed {
     width: 35px; 
     height: 35px;
-    display: flex;       /* Para centrar el texto perfectamente */
+    display: flex;
     align-items: center;
     justify-content: center;
-    padding: 0;          /* Quitar padding extra */
+    padding: 0;
+}
+
+/* --- ESTILOS EXTRA CARRITO --- */
+
+/* Botón eliminar (Papelera) */
+.hover-danger {
+    transition: all 0.2s ease;
+    border: none;
+    background: transparent;
+}
+
+.hover-danger:hover {
+    color: #dc3545 !important;
+    transform: scale(1.1);
+    cursor: pointer;
+}
+/* Imagenes dentro de la tabla del carrito */
+.table img {
+    border: 1px solid #dee2e6;
+    transition: transform 0.2s;
+}
+
+.table img:hover {
+    transform: scale(1.5);
+    z-index: 10;
+    position: relative;
+    border-color: var(--color-gold);
+}
+
+.table td {
+    vertical-align: middle;
+}
+
+@keyframes bounce-suave {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-5px); }
+}
+
+.bounce-hover {
+    display: inline-block;
+    animation: bounce-suave 2s infinite ease-in-out;
 }

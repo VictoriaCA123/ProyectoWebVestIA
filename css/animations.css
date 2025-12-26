@@ -1,5 +1,6 @@
-/* --- ANIMATIONS.CSS --- */
+/* Controla todas las transiciones y efectos */
 
+/* Efectos del Menú de Navegación */
 .enlace-menu {
     transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
@@ -10,12 +11,14 @@
     transform: translateY(-3px);
 }
 
+/*  Animación del Logo */
 .logo a {
     transition: transform 0.3s ease;
     display: inline-block;
 }
 
 .logo a:hover {
+    /* El logo crece un poco y rota a la izquierda */
     transform: scale(1.05) rotate(-2deg);
 }
 
@@ -25,6 +28,7 @@
 }
 
 .card-producto:hover {
+    /* La tarjeta sube 10px y proyecta sombra morada */
     transform: translateY(-10px);
     box-shadow: 0 15px 30px rgba(127, 22, 247, 0.3);
     border-color: var(--color-secondary);
@@ -36,5 +40,6 @@
 }
 
 .btn-agregar:hover {
+    /* Aumenta el brillo del botón al pasar el mouse */
     filter: brightness(1.2);
 }

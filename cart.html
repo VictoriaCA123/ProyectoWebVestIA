@@ -3,114 +3,111 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VestIA Boutique</title>
-<!-- Ícono de la pestaña del navegador (favicon) -->
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🏪</text></svg>">
-<!-- Bootstrap CSS para estilos y diseño responsivo -->
+    <title>Carrito - VestIA Boutique</title>
+     <!-- # ICONO DE LA PESTAÑA (FAVICON SVG) -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🛍️</text></svg>">
+     <!-- # CARGA DE ESTILOS CSS (BOOTSTRAP + ESTILOS PROPIOS) -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <!-- Hojas de estilo personalizadas -->
+    
     <link rel="stylesheet" href="css/theme-neutral.css">
     <link rel="stylesheet" href="css/base.css">
     <link rel="stylesheet" href="css/layout.css">
-    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/components.css"> 
     <link rel="stylesheet" href="css/animations.css">
 </head>
 <body>
-<!-- ENCABEZADO PRINCIPAL -->
+   <!-- # ENCABEZADO PRINCIPAL (LOGO, CUENTA Y CARRITO) -->
     <header class="header-principal">
-        
         <div class="header-top container py-3">
             <div class="row align-items-center">
-                <!-- Logo de la marca -->
+                <!-- # LOGOTIPO DE LA MARCA -->
                 <div class="col-3 col-md-2">
-                    <a href="#" class="brand-logo">Vest<span class="text-gold">IA</span></a>
+                    <a href="index.html" class="brand-logo">Vest<span class="text-gold">IA</span></a>
                 </div>
-              <!-- Barra de búsqueda -->
-                <div class="col-6 col-md-7">
-                    <div class="search-container">
-                        <input type="text" id="home-search-input" class="form-control search-input" placeholder="Buscar productos...">
-                        <button class="btn-search" id="home-search-btn"><i class="fa-solid fa-magnifying-glass"></i></button>
-                    </div>
-                </div>
-               
+                <div class="col-6 col-md-7"></div>
+                <!--# ICONOS DE USUARIO Y CARRITO -->
                 <div class="col-3 col-md-3 d-flex justify-content-end align-items-center gap-4">
-                    
-                    <a href="cart.html" class="icon-link position-relative" id="btn-carrito">
-                        <i class="fa-solid fa-cart-shopping"></i>
+                    <a href="#" class="icon-link"><i class="fa-regular fa-user"></i><span>Cuenta</span></a>
+                    <a href="cart.html" class="icon-link position-relative active">
+                        <i class="fa-solid fa-cart-shopping text-gold"></i>
                         <span>Mi Carrito</span>
-                         <span id="cart-count" class="badge rounded-pill bg-gold position-absolute top-0 start-100 translate-middle">0</span>
+                        <!--# CONTADOR DE ARTÍCULOS EN EL CARRITO (SE ACTUALIZA CON JS)-->
+                        <span id="cart-count" class="badge rounded-pill bg-gold position-absolute top-0 start-100 translate-middle">0</span>
                     </a>
                 </div>
             </div>
         </div>
-<!-- Menú de navegación -->
+<!--# BARRA DE NAVEGACIÓN INFERIOR -->
         <div class="header-bottom border-top border-bottom">
             <nav class="container d-flex justify-content-center">
                 <ul class="nav-links-clean">
-                    <li><a href="index.html" class="active">Inicio</a></li>
-                    
-                    <li class="dropdown-trigger">
-                        <a href="products.html">Catálogo de Productos</a>
-                    </li>
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="products.html">Catálogo de Productos</a></li>
                 </ul>
             </nav>
         </div>
     </header>
-
-    <main>
-        <!-- Sección de categorías -->
-        <section class="container my-5">
-            <div class="row g-4">
-                <!-- Categoría: ropa casual -->
-                <div class="col-md-4">
-                    <div class="category-card">
-                        <img src="imagenes/casual.png" alt="ropa casual">
-                        <div class="overlay">
-                            <h3>ROPA CASUAL</h3>
-                            <a href="products.html?filtro=casual" class="btn-shop">Ver Colección</a>
-                        </div>
+<!--# CONTENEDOR PRINCIPAL DEL CARRITO -->
+    <main class="container my-5" style="min-height: 50vh;">
+        
+        <h2 class="mb-4 fw-bold text-center">
+            <i class="fa-solid fa-bag-shopping me-2 text-gold bounce-hover"></i>
+            <span style="color: var(--color-primary);">Tu Carrito </span> 
+             <span class="text-gold">de Compras</span>
+        </h2>
+<!-- ESTADO 1: CARRITO VACÍO (VISIBLE SI NO HAY PRODUCTOS) -->
+        <div id="carrito-vacio" class="text-center py-5 d-none">
+            <i class="fa-solid fa-bag-shopping fa-4x text-muted mb-3"></i>
+            <h4 class="text-muted">Tu carrito está vacío</h4>
+            <a href="products.html" class="btn btn-shop bg-gold text-white">Ir a Catalogo de Productos</a>
+        </div>
+       <!-- # ESTADO 2: CARRITO CON PRODUCTOS (TABLA + RESUMEN) -->
+        <div id="carrito-lleno" class="row g-4 d-none">
+            <!-- # COLUMNA IZQUIERDA: LISTA DE PRODUCTOS -->
+            <div class="col-lg-8">
+                <div class="card border-0 shadow-sm p-3">
+                    <div class="table-responsive">
+                        <table class="table align-middle mb-0">
+                            <thead class="text-muted small text-uppercase">
+                                <tr>
+                                    <th>Producto</th>
+                                    <th>Precio</th>
+                                    <th>Cantidad</th>
+                                    <th>Subtotal</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody id="lista-carrito-body">
+                                </tbody>
+                        </table>
                     </div>
                 </div>
-               <!-- Categoría: ropa deportiva -->
-                <div class="col-md-4">
-                    <div class="category-card">
-                        <img src="imagenes/deportiva.png" alt="ropa deportiva">
-                        <div class="overlay">
-                            <h3>ROPA DEPORTIVA</h3>
-                            <a href="products.html?filtro=deportiva" class="btn-shop">Ver Colección</a>
-                        </div>
-                    </div>
-                </div>
-                <!-- Categoría: ropa formal -->
-                <div class="col-md-4">
-                    <div class="category-card">
-                        <img src="imagenes/formal.png" alt="ropa formal">
-                        <div class="overlay">
-                            <h3>ROPA FORMAL</h3>
-                            <a href="products.html?filtro=formal" class="btn-shop">Ver Colección</a>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </section>
-<!-- Sección de presentación de la tienda -->
-        <section class="container my-5 pb-5">
-            <div class="text-center mb-4">
-                <h2 class="section-title">Nuestra <span class="text-gold">Casa</span></h2>
-                <p class="text-muted">Boutique de moda con las mejores prendas del pais </p>
-            </div>
-
-            <div class="row justify-content-center">
-                <div class="col-12">
-                    <div class="store-banner-container shadow-lg rounded overflow-hidden">
-                        <img src="imagenes/tiendaVestIA.png" alt="Tienda VestIA" class="img-fluid w-100" style="max-height: 600px; object-fit: cover;">
-                    </div>
+                <!-- # BOTÓN PARA VACIAR TODO EL CARRITO -->
+                <div class="mt-3 text-end">
+                    <button class="btn btn-link text-danger text-decoration-none small" onclick="vaciarCarrito()">
+                        <i class="fa-solid fa-trash me-1"></i> Vaciar Carrito
+                    </button>
                 </div>
             </div>
-        </section>
+            <!-- # COLUMNA DERECHA: RESUMEN DE PAGO -->
+            <div class="col-lg-4">
+                <div class="card border-0 shadow-sm p-4 text-white" style="background-color: var(--color-gold);">
+                    <h5 class="fw-bold mb-4 border-bottom border-white pb-2">Resumen</h5>
+                   <!--  # TOTAL CALCULADO -->
+                    <div class="d-flex justify-content-between mb-4 align-items-center">
+                        <span class="fs-5 fw-bold">Total Precio</span>
+                        <span class="fs-2 fw-bold" style="color: var(--color-primary);" id="resumen-total">$0.00</span>
+                    </div>
+                    <!-- # BOTÓN PARA SEGUIR COMPRANDO -->
+                    <a href="products.html" class="btn w-100 py-3 fw-bold shadow-sm" 
+                       style="background-color: var(--color-primary); color: white;">
+                        <i class="fa-solid fa-arrow-left me-2"></i> Seguir Viendo Productos
+                    </a>
+                </div>
+            </div>
 
+        </div>
     </main>
 
     <footer class="footer-elegant">
@@ -126,7 +123,7 @@
                         con un solo click.
                     </p>
                 </div>
-<!-- Navegación rápida -->
+
                 <div class="col-lg-2 col-md-6 mb-4 mb-md-0">
                     <h5 class="text-uppercase mb-4 fw-bold text-white">Navegación</h5>
                     <ul class="list-unstyled mb-0">
@@ -135,7 +132,7 @@
                         <li class="mb-2"><a href="cart.html" class="footer-link">Carrito de compras</a></li>
                     </ul>
                 </div>
-<!-- Información de contacto -->
+
                 <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
                     <h5 class="text-uppercase mb-4 fw-bold text-white">Contáctanos</h5>
                     <ul class="list-unstyled mb-0 small text-white-50">
@@ -145,7 +142,7 @@
                         <li class="mb-2"><i class="fa-solid fa-location-dot me-2 text-gold"></i> Montalban, Venezuela</li>
                     </ul>
                 </div>
-<!-- Redes sociales -->
+
                 <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
                     <h5 class="text-uppercase mb-4 fw-bold text-white">Síguenos</h5>
                     <div class="d-flex gap-3">
@@ -175,28 +172,8 @@
             </div>
         </div>
     </footer>
-
+<!-- # SCRIPTS: LÓGICA DEL CARRITO Y BOOTSTRAP -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="js/cart.js"></script>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const btnSearch = document.getElementById('home-search-btn');
-            const inputSearch = document.getElementById('home-search-input');
-
-            function realizarBusqueda() {
-                const texto = inputSearch.value.trim();
-                if (texto) {
-                   
-                    window.location.href = `products.html?q=${encodeURIComponent(texto)}`;
-                }
-            }
-
-            if(btnSearch) btnSearch.addEventListener('click', realizarBusqueda);
-            if(inputSearch) inputSearch.addEventListener('keypress', (e) => {
-                if (e.key === 'Enter') realizarBusqueda();
-            });
-        });
-    </script>
+    <script src="js/cart.js"></script> 
 </body>
 </html>

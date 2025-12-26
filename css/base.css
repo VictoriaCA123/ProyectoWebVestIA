@@ -1,10 +1,15 @@
-/* --- BASE.CSS --- */
+/* Reseteo y configuraciones globales        */
+
+
+/*  Reseteo Universal */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
+
+/*  Estilos del Cuerpo */
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background-color: var(--bg-body);
@@ -15,6 +20,8 @@ body {
     flex-direction: column;
 }
 
+
+/*  Enlaces  */
 a {
     text-decoration: none;
     color: inherit;

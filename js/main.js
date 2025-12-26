@@ -1,5 +1,3 @@
-
-
 document.addEventListener('DOMContentLoaded', () => {
     cargarProductos(productos); // Llamamos a la función al cargar la página
 });

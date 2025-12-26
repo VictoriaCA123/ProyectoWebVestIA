@@ -1,44 +1,80 @@
-
 const ITEMS_POR_PAGINA = 9; 
 const API_URL = 'https://dummyjson.com/products';
 
+
+// Variables de Estado Global (Almacenan los datos en memoria del navegador)
 let todosLosProductos = []; 
 let productosFiltrados = [];
 
 document.addEventListener('DOMContentLoaded', () => {
-    
+    //  LECTURA DE URL: Verifica si ya hay filtros aplicados de la pagina de inicio
     const parametros = new URLSearchParams(window.location.search);
     const filtro = parametros.get('filtro');
-
+    
+    
+    const busquedaURL = parametros.get('q');
+    if (busquedaURL) {
+        const inputGlobal = document.getElementById('global-search');
+        if(inputGlobal) inputGlobal.value = busquedaURL;
+    }
+    
     // Si hay filtro desde index, marcamos las opciones en el HTML automáticamente
     if (filtro === 'casual') {
-        // Marca checkbox de casual si pidio ver el catalogo de ropa casual 
         const check = document.getElementById('ocasion-casual');
         if(check) check.checked = true;
-        // variable global para que el filtro funcione
         window.filtroOcasionesSeleccionadas = ['Casual'];
     } 
     else if (filtro === 'formal') {
-        // marca el checkbox de Formal
         const check = document.getElementById('ocasion-formal');
         if(check) check.checked = true;
         window.filtroOcasionesSeleccionadas = ['Formal'];
     }
     else if (filtro === 'deportiva') {
-        // check ropa deportiva
         const select = document.getElementById('filtro-categoria');
         if(select) select.value = 'deportiva';
     }
 
-    // cargamos los productos con los filtros ya puestos
+    //EVENTOS PARA LA BARRA DE BÚSQUEDA POR EL NOMBRE DEL PRODUCTO
+    const inputBusqueda = document.getElementById('global-search');
+    if (inputBusqueda) {
+        
+        inputBusqueda.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                e.preventDefault(); 
+                cargarProductos(1);
+            }
+        });
+        
+        // Buscar mientras se escribe
+        let debounceTimer;
+        inputBusqueda.addEventListener('input', () => {
+            clearTimeout(debounceTimer);
+            debounceTimer = setTimeout(() => {
+                cargarProductos(1);
+            }, 500); 
+        });
+    }
+
+    
+    const selectOrden = document.getElementById('ordenar-productos');
+    if (selectOrden) {
+        selectOrden.addEventListener('change', () => {
+          
+            aplicarFiltrosLocales();
+        });
+    }
     cargarProductos();
 });
+// Se llama desde filtros.js cuando el usuario cambia un color o talla
 window.aplicarFiltrosLocalesExterno = function() {
     aplicarFiltrosLocales();
     renderizarPagina(1);
 }
-
-
+// Se llama desde el botón de la lupa
+window.buscarProductos = function() {
+    cargarProductos(1);
+}
+/* NÚCLEO: PETICIÓN A LA API (ASÍNCRONA)     */
 async function cargarProductos(pagina = 1) {
     const contenedor = document.getElementById('contenedor-productos');
     if (!contenedor) return;
@@ -48,12 +84,15 @@ async function cargarProductos(pagina = 1) {
     const generoInput = document.querySelector('input[name="filtro-genero"]:checked');
     const genero = generoInput ? generoInput.value : 'todos'; 
     const categoriaGen = document.getElementById('filtro-categoria').value; 
-    const busqueda = document.getElementById('global-search').value;
+    
+    // Obtenemos el valor actual del buscador
+    const busqueda = document.getElementById('global-search').value.trim();
 
     let productosCrudos = [];
 
     try {
         if (busqueda) {
+            // Si hay búsqueda, usamos el endpoint de búsqueda de la API
             const res = await fetch(`${API_URL}/search?q=${busqueda}&limit=100`);
             const data = await res.json();
             productosCrudos = data.products;
@@ -96,6 +135,8 @@ async function cargarProductos(pagina = 1) {
             };
         });
 
+        // La API no trae colores ni tallas reales, así que los generamos algorítmicamente
+        // para que la tienda sea funcional.
         aplicarFiltrosLocales();
         renderizarPagina(pagina);
 
@@ -163,7 +204,8 @@ function renderizarPagina(pagina) {
                         </div>
                         <div class="product-card-footer">
                             <span class="fw-bold text-warning fs-5">$${p.price}</span>
-                            <button class="btn btn-sm btn-outline-dark rounded-pill px-3" onclick="agregarAlCarrito(${p.id})">
+                            <button class="btn btn-sm btn-outline-dark rounded-pill px-3" 
+                                onclick="agregarAlCarrito(${p.id}, '${p.title.replace(/'/g, "\\'")}', ${p.price}, '${p.thumbnail}')">
                                 Agregar
                             </button>
                         </div>
@@ -177,8 +219,7 @@ function renderizarPagina(pagina) {
     actualizarPaginacionVisual(pagina, Math.ceil(productosFiltrados.length / ITEMS_POR_PAGINA));
 }
 
-
-
+// Duplica los productos para simular un inventario más grande
 function expandirInventario(listaProductos) {
     if (listaProductos.length > 50) return listaProductos;
     
@@ -187,15 +228,12 @@ function expandirInventario(listaProductos) {
 
     return [...listaProductos, ...clones1, ...clones2].sort(() => Math.random() - 0.5);
 }
-
+// Algoritmo determinista para asignar colores (siempre el mismo color para el mismo ID)
 function obtenerColorAleatorio(seed, titulo = "") {
-    
     const colores = ['Negro', 'Azul', 'Rojo', 'Amarillo', 'Blanco']; 
-    
-
     return colores[Math.abs(seed) % colores.length];
 }
-
+// se coloca la etiqueta de productos deportivos a algunos productos
 function transformarADeportivo(producto, index) {
     const cat = producto.category.toLowerCase();
     const titulo = producto.title.toLowerCase();
@@ -231,7 +269,7 @@ function determinarOcasionInteligente(categoria, titulo, seed, filtroActual) {
     const opciones = ['Casual', 'Formal', 'Deportivo', 'Casual'];
     return opciones[seed % 4];
 }
-
+// Asigna tallas numéricas a zapatos y letras a ropa
 function determinarTallaInteligente(categoria, titulo, seed) {
     const cat = categoria ? categoria.toLowerCase() : '';
     if (cat.includes('sunglasses') || cat.includes('bag') || cat.includes('jewel')) return 'Única';
@@ -242,8 +280,6 @@ function determinarTallaInteligente(categoria, titulo, seed) {
     const tallasRopa = ['S', 'M', 'L', 'XL'];
     return tallasRopa[seed % tallasRopa.length];
 }
-
-
 
 async function obtenerMixDeportivo() {
     const urls = [
@@ -318,11 +354,15 @@ function maquillarTitulos(producto) {
     return { ...producto, title: titulo };
 }
 
+// Aplica filtros sobre el array 'todosLosProductos' en memoria (sin recargar API)
 function aplicarFiltrosLocales() {
     const precioMax = parseFloat(document.getElementById('rango-precio').value) || 500;
     const colorSeleccionado = window.filtroColorSeleccionado || null;
     const tallaSeleccionada = window.filtroTallaSeleccionado || null;
     const ocasionesSeleccionadas = window.filtroOcasionesSeleccionadas || [];
+    
+    
+    const criterioOrden = document.getElementById('ordenar-productos') ? document.getElementById('ordenar-productos').value : 'default';
 
     productosFiltrados = todosLosProductos.filter(p => {
         if (p.price > precioMax) return false;
@@ -336,10 +376,18 @@ function aplicarFiltrosLocales() {
         return true;
     });
 
+    
+    if (criterioOrden === 'precio-asc') {
+        productosFiltrados.sort((a, b) => a.price - b.price);
+    } else if (criterioOrden === 'precio-desc') {
+        productosFiltrados.sort((b, a) => b.price - a.price);
+    }
+   
+
     const contador = document.getElementById('total-productos');
     if (contador) contador.textContent = `${productosFiltrados.length} productos encontrados`;
 }
-
+// Genera los botones de paginación (Anterior, 1, 2, 3... Siguiente)
 function actualizarPaginacionVisual(actual, total) {
     const paginacion = document.getElementById('paginacion');
     if (!paginacion) return;
@@ -363,4 +411,7 @@ window.cambiarPagina = function(p) {
     window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
-window.buscarProductos = function() { cargarProductos(1); }
+// Placeholder simple para agregar al carrito (Debe conectar con cart.js)
+window.agregarAlCarrito = function(id) {
+    console.log(`Producto ${id} agregado.`);
+}
