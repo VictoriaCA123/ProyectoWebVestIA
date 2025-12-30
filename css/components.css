@@ -1,0 +1,312 @@
+/* Componentes visuales y módulos de la UI   */
+
+/* LOGO */
+.brand-logo {
+    font-size: 2.2rem;
+    font-weight: 800;
+    color: var(--color-primary);
+    text-decoration: none;
+    letter-spacing: -0.5px;
+    font-family: 'Playfair Display', serif;
+}
+.text-gold { color: var(--color-gold); }
+
+/* BUSCADOR */
+.search-container {
+    position: relative;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.search-input {
+    border-radius: 50px;
+    padding: 12px 25px;
+    border: 1px solid #e0e0e0;
+    background: #fcfcfc;
+    transition: all 0.3s;
+}
+
+.search-input:focus {
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 3px rgba(27, 54, 93, 0.1);
+}
+
+.btn-search {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: var(--color-primary);
+}
+
+/* ICONOS HEADER */
+.icon-link {
+    text-decoration: none;
+    color: var(--color-text);
+    text-align: center;
+    font-size: 0.75rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: color 0.3s;
+}
+
+.icon-link i {
+    font-size: 1.3rem;
+    margin-bottom: 4px;
+    color: var(--color-primary);
+}
+
+.icon-link:hover i { color: var(--color-gold); }
+
+/* BADGE CARRITO */
+.bg-gold {
+    background-color: var(--color-gold) !important;
+    color: white;
+}
+
+/* BOTONES ESTILO TIENDA */
+.btn-shop {
+    background: white;
+    color: var(--color-primary);
+    border: none;
+    padding: 10px 25px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    transition: all 0.3s;
+    margin-top: 10px;
+}
+
+.btn-shop:hover {
+    background: var(--color-primary);
+    color: white;
+}
+
+/* BOTONES REDES SOCIALES */
+.social-btn {
+    width: 40px;
+    height: 40px;
+    background: rgba(255,255,255,0.1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    transition: 0.3s;
+}
+
+.social-btn:hover {
+    background: var(--color-gold);
+    color: white;
+    transform: translateY(-3px);
+}
+
+.category-tag {
+    font-size: 0.8rem;
+    color: #999;
+    text-transform: uppercase;
+    margin-bottom: 5px;
+    letter-spacing: 1px;
+}
+
+.btn-add-cart {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    background-color: white;
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    cursor: pointer;
+    transition: all 0.3s;
+    opacity: 0;
+    transform: translateY(10px);
+}
+
+.btn-add-cart:hover {
+    background-color: var(--color-gold);
+    color: white;
+}
+
+.img-wrapper:hover .btn-add-cart {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.product-card-custom {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    background-color: #fff;
+    border: 1px solid rgba(0,0,0,0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.product-card-custom:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 .5rem 1rem rgba(0,0,0,.15)!important;
+}
+
+.product-img-wrapper {
+    height: 250px;
+    position: relative;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+.product-img-fit {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.product-card-custom:hover .product-img-fit {
+    transform: scale(1.05);
+}
+
+.product-info-body {
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    justify-content: space-between;
+}
+
+.product-desc-text {
+    font-size: 0.9rem;
+    color: #6c757d;
+    margin-bottom: 1rem;
+}
+
+.product-card-footer {
+    margin-top: auto;
+    padding-top: 1rem;
+    border-top: 1px solid #f0f0f0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.product-badges-container {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    margin: 0.5rem;
+    display: flex;
+    gap: 0.25rem;
+    flex-wrap: wrap;
+}
+
+.color-option {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    cursor: pointer;
+    border: 2px solid rgba(255,255,255,0.2);
+    transition: transform 0.2s;
+}
+
+.color-option:hover, .color-option.active {
+    transform: scale(1.2);
+    border-color: var(--color-gold);
+}
+
+.form-check-input:checked {
+    background-color: var(--color-gold);
+    border-color: var(--color-gold);
+}
+
+.sidebar-sticky-card {
+    top: 20px;
+    z-index: 900;
+    background-color: var(--color-primary);
+    color: white;
+    border-radius: 12px;
+}
+
+.filter-select-custom {
+    background-color: rgba(255,255,255,0.9);
+}
+
+.btn-talla-fixed {
+    width: 35px; 
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+}
+
+/* --- ESTILOS EXTRA CARRITO --- */
+
+.hover-danger {
+    transition: all 0.2s ease;
+    border: none;
+    background: transparent;
+}
+
+.hover-danger:hover {
+    color: #dc3545 !important;
+    transform: scale(1.1);
+    cursor: pointer;
+}
+
+.table img {
+    border: 1px solid #dee2e6;
+    transition: transform 0.2s;
+}
+
+.table img:hover {
+    transform: scale(1.5);
+    z-index: 10;
+    position: relative;
+    border-color: var(--color-gold);
+}
+
+.table td {
+    vertical-align: middle;
+}
+
+@keyframes bounce-suave {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-5px); }
+}
+
+.bounce-hover {
+    display: inline-block;
+    animation: bounce-suave 2s infinite ease-in-out;
+}
+
+/* --- NOTIFICACIÓN  --- */
+#toast-notification {
+    visibility: hidden;
+    min-width: 250px;
+    background-color: var(--color-primary); 
+    color: #fff;
+    text-align: center;
+    border-radius: 8px;
+    padding: 16px;
+    position: fixed;
+    z-index: 9999;
+    left: 50%;
+    bottom: 30px;
+    transform: translateX(-50%);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    border-bottom: 3px solid var(--color-gold); 
+    font-size: 0.95rem;
+    opacity: 0;
+    transition: opacity 0.5s, bottom 0.5s;
+}
+
+#toast-notification.show {
+    visibility: visible;
+    opacity: 1;
+    bottom: 50px; 
+}

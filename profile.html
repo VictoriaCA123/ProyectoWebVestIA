@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Perfil - VestIA</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>👤</text></svg>">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="css/theme-neutral.css">
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="css/components.css">
+</head>
+<body>
+    <header class="header-principal">
+        <div class="header-top container py-3">
+            <div class="row align-items-center">
+                <div class="col-3 col-md-2"><a href="index.html" class="brand-logo">Vest<span class="text-gold">IA</span></a></div>
+                <div class="col-6 col-md-7"></div>
+                <div class="col-3 col-md-3 d-flex justify-content-end align-items-center gap-4">
+                    <a href="profile.html" class="icon-link active text-decoration-none">
+                        <i class="fa-regular fa-user"></i><span>Cuenta</span>
+                    </a>
+                    <a href="cart.html" class="icon-link position-relative" id="btn-carrito">
+                        <i class="fa-solid fa-cart-shopping"></i><span>Mi Carrito</span>
+                        <span id="cart-count" class="badge rounded-pill bg-gold position-absolute top-0 start-100 translate-middle">0</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="header-bottom border-top border-bottom">
+            <nav class="container d-flex justify-content-center">
+                <ul class="nav-links-clean">
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="products.html">Catálogo</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container my-5">
+        <div class="row justify-content-center">
+            <div class="col-md-8 col-lg-6">
+                <div class="card border-0 shadow-lg p-4">
+                    <h3 class="text-center mb-4 fw-bold text-gold">Mis Preferencias de Estilo</h3>
+                    <p class="text-center text-muted mb-4">Guarda tus tallas y gustos para que VestIA personalice el catálogo para ti.</p>
+                    
+                    <form id="form-perfil">
+                        <div class="mb-4">
+                            <label class="form-label fw-bold">Tu Nombre</label>
+                            <input type="text" id="pref-nombre" class="form-control" placeholder="Ej: María">
+                        </div>
+
+                        <div class="mb-4">
+                            <label class="form-label fw-bold">Preferencia de Ropa</label>
+                            <select id="pref-genero" class="form-select">
+                                <option value="todos">Ver todo</option>
+                                <option value="mujer">Dama</option>
+                                <option value="hombre">Caballero</option>
+                            </select>
+                        </div>
+
+                        <div class="mb-4">
+                            <label class="form-label fw-bold">Estilo Favorito</label>
+                            <div class="d-flex gap-3">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="pref-estilo" id="estilo-casual" value="Casual" checked>
+                                    <label class="form-check-label" for="estilo-casual">Casual</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="pref-estilo" id="estilo-formal" value="Formal">
+                                    <label class="form-check-label" for="estilo-formal">Formal</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="pref-estilo" id="estilo-deportivo" value="Deportivo">
+                                    <label class="form-check-label" for="estilo-deportivo">Deportivo</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mb-4">
+                            <label class="form-label fw-bold">Talla de Ropa Habitual</label>
+                            <select id="pref-talla" class="form-select">
+                                <option value="">Cualquiera</option>
+                                <option value="S">S</option>
+                                <option value="M">M</option>
+                                <option value="L">L</option>
+                                <option value="XL">XL</option>
+                            </select>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary w-100 py-2 fw-bold">Guardar Preferencias</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <div id="toast-notification"></div>
+
+    <footer class="footer-elegant">
+        <div class="container py-5 text-center">
+            <p class="text-white-50 m-0">© 2025 VestIA Boutique</p>
+        </div>
+    </footer>
+
+    <script src="js/config.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/profile.js"></script> </body>
+</html>
