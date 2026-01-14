@@ -1,0 +1,174 @@
+/* --- CABECERA PRINCIPAL --- */
+
+/* Lo más importante aquí es el 'position: sticky'. 
+   Esto hace que el menú se quede pegado arriba cuando bajas haciendo scroll.
+   Le puse un z-index alto para que ninguna foto lo tape. */
+.header-principal {
+    background: var(--color-bg);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+}
+
+.header-bottom {
+    border-color: #f0f0f0 !important;
+}
+
+/* --- ENLACES DEL MENÚ --- */
+
+/* Uso flexbox para poner los links en fila y 'gap: 60px' para que respiren,
+   que no se vean todos amontonados. Queda muy limpio. */
+.nav-links-clean {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 60px; 
+}
+
+/* Estilo de letra mayúscula y con espacio entre letras (tracking).
+   Es el típico estilo minimalista de marcas de ropa. */
+.nav-links-clean a {
+    text-decoration: none;
+    color: var(--color-primary);
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    letter-spacing: 1.5px;
+    padding: 15px 0;
+    position: relative;
+    transition: color 0.3s;
+}
+
+.nav-links-clean a:hover {
+    color: var(--color-gold);
+}
+
+/* --- TARJETAS DE CATEGORÍAS (Las fotos grandes) --- */
+
+/* Defino una altura fija de 60% de la pantalla (60vh).
+   El 'overflow: hidden' es clave para que cuando la foto haga zoom,
+   no se salga del marco redondeado. */
+.category-card {
+    height: 60vh;
+    position: relative;
+    overflow: hidden;
+    border-radius: 8px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+}
+
+/* Animación lenta (0.8s) para el zoom de la foto. */
+.category-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.8s ease;
+}
+
+.category-card:hover img {
+    transform: scale(1.08);
+}
+
+/* --- EL DEGRADADO SOBRE LA FOTO (OVERLAY) --- */
+
+/* Esto es un trucazo: creo una capa negra transparente (gradiente)
+   encima de la foto pero solo abajo. Así puedo poner texto blanco 
+   y se lee perfecto sin importar qué foto haya detrás. */
+.overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 40px 20px;
+    background: linear-gradient(to top, rgba(27, 54, 93, 0.9), transparent);
+    color: white;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.overlay h3 {
+    font-weight: 700;
+    font-size: 1.5rem;
+    letter-spacing: 2px;
+    margin-bottom: 5px;
+    text-transform: uppercase;
+}
+
+/* --- BARRA LATERAL FIJA (SIDEBAR) --- */
+
+/* Aquí configuro la barra lateral para que te persiga al bajar (sticky),
+   pero si es muy larga, le pongo su propio scroll interno. 
+   Es súper útil para filtros en tiendas. */
+.sidebar-sticky-card {
+    position: -webkit-sticky; 
+    position: sticky;
+    top: 90px; 
+    z-index: 90; 
+    max-height: calc(100vh - 110px); 
+    overflow-y: auto;  
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-gold) #f0f0f0;
+}
+
+/* Todo esto de 'webkit' es solo para personalizar la barra de scroll 
+   y que no salga la gris fea por defecto del navegador. 
+   La puse finita y gris suave. */
+.sidebar-sticky-card::-webkit-scrollbar {
+    width: 6px;
+}
+.sidebar-sticky-card::-webkit-scrollbar-track {
+    background: #f8f9fa;
+    border-radius: 4px;
+}
+.sidebar-sticky-card::-webkit-scrollbar-thumb {
+    background-color: #ccc; 
+    border-radius: 4px;
+}
+.sidebar-sticky-card::-webkit-scrollbar-thumb:hover {
+    background-color: var(--color-gold); 
+}
+
+/* --- PIE DE PÁGINA (FOOTER) --- */
+
+/* Un footer oscuro con una línea dorada arriba para separar. */
+.footer-elegant {
+    background-color: var(--color-primary); 
+    color: white;
+    margin-top: 80px;
+    border-top: 5px solid var(--color-gold);
+}
+
+/* Clase rápida para texto blanco semitransparente (menos intenso). */
+.text-white-50 {
+    color: rgba(255, 255, 255, 0.6) !important;
+}
+
+/* --- ENLACES DEL FOOTER --- */
+
+/* Este efecto es sutil pero queda pro: al pasar el mouse,
+   el link no solo cambia de color, sino que se mueve un poquito
+   a la derecha con el padding-left. */
+.footer-link {
+    color: rgba(255, 255, 255, 0.7);
+    text-decoration: none;
+    transition: 0.3s;
+    font-size: 0.95rem;
+}
+
+.footer-link:hover {
+    color: var(--color-gold);
+    padding-left: 8px;
+}
+
+/* La parte final del copyright, fondo un pelín más oscuro. */
+.footer-bottom {
+    background-color: rgba(0, 0, 0, 0.2); 
+    padding: 20px 0;
+}
+
+.row {
+    align-items: flex-start;
+}

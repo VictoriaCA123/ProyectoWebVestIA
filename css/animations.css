@@ -1,0 +1,73 @@
+
+
+/* Aquí configuro cómo se comportan los links del menú. 
+   Le puse una transición 'cubic-bezier' para que el movimiento 
+   no sea aburrido y lineal, sino que tenga ese efecto de "acelerar y frenar" suave.
+*/
+.enlace-menu {
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+/* Este es el estado cuando pasas el mouse por encima.
+   La idea es que el texto brille (con el text-shadow) y "flote" 
+   un poquito hacia arriba para invitarte a hacer clic.
+*/
+.enlace-menu:hover {
+    color: var(--color-highlight);
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+    transform: translateY(-3px);
+}
+
+/* --- ESTILOS DEL LOGO --- */
+
+/* Al logo le doy su propia transición solo en la transformación,
+   para que cuando crezca no se vea brusco.
+*/
+.logo a {
+    transition: transform 0.3s ease;
+    display: inline-block;
+}
+
+/* Efecto juguetón para el logo: al pasar el mouse, 
+   crece un pelín (scale) y se inclina a la izquierda (-2deg) 
+   para darle personalidad a la marca.
+*/
+.logo a:hover {
+    transform: scale(1.05) rotate(-2deg);
+}
+
+/* --- TARJETAS DE PRODUCTOS --- */
+
+/* Preparo la tarjeta para que cualquier cambio de tamaño o sombra 
+   tarde 0.3 segundos. 
+*/
+.card-producto {
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+/* Este es el efecto "levantar la carta". 
+   Sube 10px y le meto una sombra morada fuerte abajo 
+   para dar la ilusión de profundidad (3D). También cambio el borde 
+   para destacar que "estás aquí".
+*/
+.card-producto:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(127, 22, 247, 0.3);
+    border-color: var(--color-secondary);
+}
+
+/* --- BOTONES DE ACCIÓN --- */
+
+/* Aquí fui a lo simple: transición suave para el filtro.
+*/
+.btn-agregar {
+    transition: filter 0.3s;
+}
+
+/* Truco rápido: en vez de buscar otro color de fondo, 
+   simplemente le subo el brillo (brightness) al botón original. 
+   Es más fácil y funciona con cualquier color de botón.
+*/
+.btn-agregar:hover {
+    filter: brightness(1.2);
+}
