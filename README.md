@@ -20,6 +20,11 @@ Busca el botón verde que dice **"Code"** en la parte superior derecha de esta p
 * Abre la carpeta del proyecto en **Visual Studio Code**.
 * Asegúrate de tener descargada la extensión **"Live Server"**.
 * Ve al archivo `index.html`, dale clic derecho y selecciona la opción **"Open with Live Server"**.
+
+**3. Colocar API*
+Para que VestIA funcione, al iniciar la aplicación verá una ventana solicitando la API Key.
+* Instrucciones: Copie y pegue la clave que he adjuntado en la entrega de la tarea (o puede usar una propia si lo prefiere).
+- ¿Por qué se pide esto? Esto es necesario debido a que, si la Key se incluye directamente en el código, GitHub la detecta y la bloquea automáticamente debido a sus políticas de seguridad (Secret Scanning) para evitar el robo de credenciales.
 ##  Tecnologías y Librerías Utilizadas
 
 Este proyecto fue desarrollado utilizando tecnologías web estándar:
